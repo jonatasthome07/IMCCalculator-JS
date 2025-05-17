@@ -64,4 +64,14 @@ function createTable (data){
     })
 }
 
+function cleanInputs(){
+    imcHeight.value = ""
+    imcWeight.value = ""
+}
+
+clearBtn.addEventListener("click", (e) =>{
+    e.preventDefault();
+    cleanInputs();
+})
+
 createTable(data);
