@@ -41,6 +41,11 @@ const imcHeight = document.querySelector("#height")
 const imcWeight = document.querySelector("#weight")
 const calcBtn = document.querySelector("#calc-btn")
 const clearBtn = document.querySelector("#clear-btn")
+const imcNumber = document.querySelector("#imc-number span")
+const imcInfo = document.querySelector("#imc-info span")
+const backBtn = document.querySelector("#back-btn")
+const calcContainer = document.querySelector("#calc-container")
+const resultContainer = document.querySelector("#result-container")
 
 function createTable (data){
     data.forEach((item) =>{
@@ -85,6 +90,11 @@ function calcIMC(weight, height){
   return imc;
 }
 
+function showOrHideResults(){
+  calcContainer.classList.toggle("hide")
+  resultContainer.classList.toggle("hide")
+}
+
 [imcHeight, imcWeight].forEach((el) =>{
   el.addEventListener("input", (e)=>{
     const updatedValue = validDigits(e.target.value)
@@ -99,7 +109,7 @@ calcBtn.addEventListener("click", (e)=>{
   
   if (!weight || !height ) return;
 
-  const imc = calcIMC(weight,height)
+  const imc = calcIMC(weight, height)
 
   let info
   data.forEach((item) => {
@@ -108,6 +118,8 @@ calcBtn.addEventListener("click", (e)=>{
     }
   })
   if (!info) return;
-  console.log(info)
+  imcNumber.innerText = imc
+  imcInfo.innerText = info
+  showOrHideResults();
 })
 
